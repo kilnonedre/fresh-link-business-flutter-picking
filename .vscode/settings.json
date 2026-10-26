@@ -1,0 +1,13 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+    "pubspec.yaml": ".metadata, .packages, all_lint_rules.yaml, analysis_options.yaml, build.yaml, pubspec.lock, pubspec_overrides.yaml",
+    "*.dart": "$(capture).freezed.dart, $(capture).g.dart, $(capture).gr.dart, $(capture).enum.dart"
+  },
+  "cSpell.words": [
+    "Lucide",
+    "shadcn"
+  ]
+}
