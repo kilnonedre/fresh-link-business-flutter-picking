@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CommonCrmAccount {
 
- String get id; CommonCrmMerchant get merchant; String get profileId; String get username; String get handle; String? get email; String? get phone; String? get avatarId;
+@UUIDConverter() UUID get id; CommonCrmMerchant get merchant;@UUIDConverter() UUID get profileId; String get username; String get handle; String? get email; String? get phone; String? get avatarId;
 /// Create a copy of CommonCrmAccount
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -54,7 +54,7 @@ abstract mixin class $CommonCrmAccountCopyWith<$Res>  {
   factory $CommonCrmAccountCopyWith(CommonCrmAccount value, $Res Function(CommonCrmAccount) _then) = _$CommonCrmAccountCopyWithImpl;
 @useResult
 $Res call({
- String id, CommonCrmMerchant merchant, String profileId, String username, String handle, String? email, String? phone, String? avatarId
+@UUIDConverter() UUID id, CommonCrmMerchant merchant,@UUIDConverter() UUID profileId, String username, String handle, String? email, String? phone, String? avatarId
 });
 
 
@@ -74,9 +74,9 @@ class _$CommonCrmAccountCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? merchant = null,Object? profileId = null,Object? username = null,Object? handle = null,Object? email = freezed,Object? phone = freezed,Object? avatarId = freezed,}) {
   return _then(CommonCrmAccount(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,merchant: null == merchant ? _self.merchant : merchant // ignore: cast_nullable_to_non_nullable
+as UUID,merchant: null == merchant ? _self.merchant : merchant // ignore: cast_nullable_to_non_nullable
 as CommonCrmMerchant,profileId: null == profileId ? _self.profileId : profileId // ignore: cast_nullable_to_non_nullable
-as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as UUID,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,handle: null == handle ? _self.handle : handle // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
@@ -175,7 +175,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  CommonCrmMerchant merchant,  String profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  CommonCrmMerchant merchant, @UUIDConverter()  UUID profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CommonCrmAccount() when $default != null:
 return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.handle,_that.email,_that.phone,_that.avatarId);case _:
@@ -196,7 +196,7 @@ return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.han
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  CommonCrmMerchant merchant,  String profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  CommonCrmMerchant merchant, @UUIDConverter()  UUID profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)  $default,) {final _that = this;
 switch (_that) {
 case _CommonCrmAccount():
 return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.handle,_that.email,_that.phone,_that.avatarId);case _:
@@ -216,7 +216,7 @@ return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.han
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  CommonCrmMerchant merchant,  String profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@UUIDConverter()  UUID id,  CommonCrmMerchant merchant, @UUIDConverter()  UUID profileId,  String username,  String handle,  String? email,  String? phone,  String? avatarId)?  $default,) {final _that = this;
 switch (_that) {
 case _CommonCrmAccount() when $default != null:
 return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.handle,_that.email,_that.phone,_that.avatarId);case _:
@@ -231,12 +231,12 @@ return $default(_that.id,_that.merchant,_that.profileId,_that.username,_that.han
 @JsonSerializable()
 
 class _CommonCrmAccount implements CommonCrmAccount {
-  const _CommonCrmAccount({required this.id, required this.merchant, required this.profileId, required this.username, required this.handle, required this.email, required this.phone, required this.avatarId});
+  const _CommonCrmAccount({@UUIDConverter() required this.id, required this.merchant, @UUIDConverter() required this.profileId, required this.username, required this.handle, required this.email, required this.phone, required this.avatarId});
   factory _CommonCrmAccount.fromJson(Map<String, dynamic> json) => _$CommonCrmAccountFromJson(json);
 
-@override final  String id;
+@override@UUIDConverter() final  UUID id;
 @override final  CommonCrmMerchant merchant;
-@override final  String profileId;
+@override@UUIDConverter() final  UUID profileId;
 @override final  String username;
 @override final  String handle;
 @override final  String? email;
@@ -278,7 +278,7 @@ abstract mixin class _$CommonCrmAccountCopyWith<$Res> implements $CommonCrmAccou
   factory _$CommonCrmAccountCopyWith(_CommonCrmAccount value, $Res Function(_CommonCrmAccount) _then) = __$CommonCrmAccountCopyWithImpl;
 @override @useResult
 $Res call({
- String id, CommonCrmMerchant merchant, String profileId, String username, String handle, String? email, String? phone, String? avatarId
+@UUIDConverter() UUID id, CommonCrmMerchant merchant,@UUIDConverter() UUID profileId, String username, String handle, String? email, String? phone, String? avatarId
 });
 
 
@@ -298,9 +298,9 @@ class __$CommonCrmAccountCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? merchant = null,Object? profileId = null,Object? username = null,Object? handle = null,Object? email = freezed,Object? phone = freezed,Object? avatarId = freezed,}) {
   return _then(_CommonCrmAccount(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,merchant: null == merchant ? _self.merchant : merchant // ignore: cast_nullable_to_non_nullable
+as UUID,merchant: null == merchant ? _self.merchant : merchant // ignore: cast_nullable_to_non_nullable
 as CommonCrmMerchant,profileId: null == profileId ? _self.profileId : profileId // ignore: cast_nullable_to_non_nullable
-as String,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as UUID,username: null == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String,handle: null == handle ? _self.handle : handle // ignore: cast_nullable_to_non_nullable
 as String,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,phone: freezed == phone ? _self.phone : phone // ignore: cast_nullable_to_non_nullable
@@ -325,7 +325,7 @@ $CommonCrmMerchantCopyWith<$Res> get merchant {
 /// @nodoc
 mixin _$CommonCrmMerchant {
 
- String get id; String get name; String get code; String? get licenseNo; String? get logoId;
+@UUIDConverter() UUID get id; String get name; String get code; String? get licenseNo;@UUIDConverter() UUID? get logoId;
 /// Create a copy of CommonCrmMerchant
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -363,7 +363,7 @@ abstract mixin class $CommonCrmMerchantCopyWith<$Res>  {
   factory $CommonCrmMerchantCopyWith(CommonCrmMerchant value, $Res Function(CommonCrmMerchant) _then) = _$CommonCrmMerchantCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String code, String? licenseNo, String? logoId
+@UUIDConverter() UUID id, String name, String code, String? licenseNo,@UUIDConverter() UUID? logoId
 });
 
 
@@ -383,11 +383,11 @@ class _$CommonCrmMerchantCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? code = null,Object? licenseNo = freezed,Object? logoId = freezed,}) {
   return _then(CommonCrmMerchant(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as UUID,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,licenseNo: freezed == licenseNo ? _self.licenseNo : licenseNo // ignore: cast_nullable_to_non_nullable
 as String?,logoId: freezed == logoId ? _self.logoId : logoId // ignore: cast_nullable_to_non_nullable
-as String?,
+as UUID?,
   ));
 }
 
@@ -472,7 +472,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String code,  String? licenseNo,  String? logoId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  String name,  String code,  String? licenseNo, @UUIDConverter()  UUID? logoId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CommonCrmMerchant() when $default != null:
 return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);case _:
@@ -493,7 +493,7 @@ return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String code,  String? licenseNo,  String? logoId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  String name,  String code,  String? licenseNo, @UUIDConverter()  UUID? logoId)  $default,) {final _that = this;
 switch (_that) {
 case _CommonCrmMerchant():
 return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);case _:
@@ -513,7 +513,7 @@ return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String code,  String? licenseNo,  String? logoId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@UUIDConverter()  UUID id,  String name,  String code,  String? licenseNo, @UUIDConverter()  UUID? logoId)?  $default,) {final _that = this;
 switch (_that) {
 case _CommonCrmMerchant() when $default != null:
 return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);case _:
@@ -528,14 +528,14 @@ return $default(_that.id,_that.name,_that.code,_that.licenseNo,_that.logoId);cas
 @JsonSerializable()
 
 class _CommonCrmMerchant implements CommonCrmMerchant {
-  const _CommonCrmMerchant({required this.id, required this.name, required this.code, required this.licenseNo, required this.logoId});
+  const _CommonCrmMerchant({@UUIDConverter() required this.id, required this.name, required this.code, required this.licenseNo, @UUIDConverter() required this.logoId});
   factory _CommonCrmMerchant.fromJson(Map<String, dynamic> json) => _$CommonCrmMerchantFromJson(json);
 
-@override final  String id;
+@override@UUIDConverter() final  UUID id;
 @override final  String name;
 @override final  String code;
 @override final  String? licenseNo;
-@override final  String? logoId;
+@override@UUIDConverter() final  UUID? logoId;
 
 /// Create a copy of CommonCrmMerchant
 /// with the given fields replaced by the non-null parameter values.
@@ -572,7 +572,7 @@ abstract mixin class _$CommonCrmMerchantCopyWith<$Res> implements $CommonCrmMerc
   factory _$CommonCrmMerchantCopyWith(_CommonCrmMerchant value, $Res Function(_CommonCrmMerchant) _then) = __$CommonCrmMerchantCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String code, String? licenseNo, String? logoId
+@UUIDConverter() UUID id, String name, String code, String? licenseNo,@UUIDConverter() UUID? logoId
 });
 
 
@@ -592,11 +592,11 @@ class __$CommonCrmMerchantCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? code = null,Object? licenseNo = freezed,Object? logoId = freezed,}) {
   return _then(_CommonCrmMerchant(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as UUID,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
 as String,licenseNo: freezed == licenseNo ? _self.licenseNo : licenseNo // ignore: cast_nullable_to_non_nullable
 as String?,logoId: freezed == logoId ? _self.logoId : logoId // ignore: cast_nullable_to_non_nullable
-as String?,
+as UUID?,
   ));
 }
 

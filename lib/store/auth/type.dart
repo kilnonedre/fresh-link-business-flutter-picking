@@ -1,5 +1,7 @@
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
+
 class AuthState {
-  final String? id;
+  final UUID? id;
   final String? accessToken;
   final String? refreshToken;
 
@@ -7,9 +9,7 @@ class AuthState {
 
   bool get isAuthed =>
       id != null &&
-      id!.isNotEmpty &&
-      accessToken != null &&
-      accessToken!.isNotEmpty &&
-      refreshToken != null &&
-      refreshToken!.isNotEmpty;
+      id!.isValid &&
+      accessToken?.isNotEmpty == true &&
+      refreshToken?.isNotEmpty == true;
 }

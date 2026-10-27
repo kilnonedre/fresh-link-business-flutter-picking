@@ -20,14 +20,14 @@ Map<String, dynamic> _$ConfigLoginReqToJson(_ConfigLoginReq instance) =>
 
 _ConfigLoginResp _$ConfigLoginRespFromJson(Map<String, dynamic> json) =>
     _ConfigLoginResp(
-      id: json['id'] as String,
+      id: const UUIDConverter().fromJson(json['id'] as String),
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
     );
 
 Map<String, dynamic> _$ConfigLoginRespToJson(_ConfigLoginResp instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': const UUIDConverter().toJson(instance.id),
       'accessToken': instance.accessToken,
       'refreshToken': instance.refreshToken,
     };
@@ -36,14 +36,14 @@ _ConfigRefreshAccessTokenReq _$ConfigRefreshAccessTokenReqFromJson(
   Map<String, dynamic> json,
 ) => _ConfigRefreshAccessTokenReq(
   refreshToken: json['refreshToken'] as String,
-  userId: json['userId'] as String,
+  userId: const UUIDConverter().fromJson(json['userId'] as String),
 );
 
 Map<String, dynamic> _$ConfigRefreshAccessTokenReqToJson(
   _ConfigRefreshAccessTokenReq instance,
 ) => <String, dynamic>{
   'refreshToken': instance.refreshToken,
-  'userId': instance.userId,
+  'userId': const UUIDConverter().toJson(instance.userId),
 };
 
 _ConfigRefreshAccessTokenResp _$ConfigRefreshAccessTokenRespFromJson(

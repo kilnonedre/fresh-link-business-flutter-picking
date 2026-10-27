@@ -1,9 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
 
 part 'type.freezed.dart';
 part 'type.g.dart';
 
-/// 登录请求
+// 登录请求
 @freezed
 abstract class ConfigLoginReq with _$ConfigLoginReq {
   const factory ConfigLoginReq({
@@ -15,11 +16,11 @@ abstract class ConfigLoginReq with _$ConfigLoginReq {
       _$ConfigLoginReqFromJson(json);
 }
 
-/// 登录响应
+// 登录响应
 @freezed
 abstract class ConfigLoginResp with _$ConfigLoginResp {
   const factory ConfigLoginResp({
-    required String id,
+    @UUIDConverter() required UUID id,
     required String accessToken,
     required String refreshToken,
   }) = _ConfigLoginResp;
@@ -28,19 +29,19 @@ abstract class ConfigLoginResp with _$ConfigLoginResp {
       _$ConfigLoginRespFromJson(json);
 }
 
-/// 刷新 Access Token 请求
+// 刷新 Access Token 请求
 @freezed
 abstract class ConfigRefreshAccessTokenReq with _$ConfigRefreshAccessTokenReq {
   const factory ConfigRefreshAccessTokenReq({
     required String refreshToken,
-    required String userId,
+    @UUIDConverter() required UUID userId,
   }) = _ConfigRefreshAccessTokenReq;
 
   factory ConfigRefreshAccessTokenReq.fromJson(Map<String, dynamic> json) =>
       _$ConfigRefreshAccessTokenReqFromJson(json);
 }
 
-/// 刷新 Access Token 响应
+// 刷新 Access Token 响应
 @freezed
 abstract class ConfigRefreshAccessTokenResp
     with _$ConfigRefreshAccessTokenResp {
@@ -51,7 +52,7 @@ abstract class ConfigRefreshAccessTokenResp
       _$ConfigRefreshAccessTokenRespFromJson(json);
 }
 
-/// 刷新 Refresh Token 请求
+// 刷新 Refresh Token 请求
 @freezed
 abstract class ConfigRefreshRefreshTokenReq
     with _$ConfigRefreshRefreshTokenReq {
@@ -62,7 +63,7 @@ abstract class ConfigRefreshRefreshTokenReq
       _$ConfigRefreshRefreshTokenReqFromJson(json);
 }
 
-/// 刷新 Refresh Token 响应
+// 刷新 Refresh Token 响应
 @freezed
 abstract class ConfigRefreshRefreshTokenResp
     with _$ConfigRefreshRefreshTokenResp {

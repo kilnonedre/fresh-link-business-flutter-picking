@@ -1,3 +1,4 @@
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
 import 'package:fresh_link_business_flutter_picking/store/auth/type.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -17,7 +18,7 @@ class AuthStore extends _$AuthStore {
   }
 
   void setAuth({
-    required String id,
+    @UUIDConverter() required UUID id,
     required String accessToken,
     required String refreshToken,
   }) {

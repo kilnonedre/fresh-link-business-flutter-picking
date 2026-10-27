@@ -4,3 +4,5 @@ import 'api_service.dart';
 
 final authApiService = ApiService(authApiUrl);
 final crmApiService = ApiService(crmApiUrl);
+final catalogApiService = ApiService(catalogApiUrl);
+final wmsApiService = ApiService(wmsApiUrl);

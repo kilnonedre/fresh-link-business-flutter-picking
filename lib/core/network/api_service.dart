@@ -1,45 +1,43 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:fresh_link_business_flutter_picking/api/auth/crm/merchant/index.dart';
+import 'package:fresh_link_business_flutter_picking/api/auth/auth/index.dart';
+import 'package:fresh_link_business_flutter_picking/api/auth/auth/type.dart';
+import 'package:fresh_link_business_flutter_picking/api/crm/merchant/index.dart';
 import 'package:fresh_link_business_flutter_picking/core/event/event_bus.dart';
 import 'package:fresh_link_business_flutter_picking/core/event/type.dart';
 import 'package:fresh_link_business_flutter_picking/core/logger/index.dart';
 import 'package:fresh_link_business_flutter_picking/core/network/logging_interceptor.dart';
 import 'package:fresh_link_business_flutter_picking/core/type/enum/operator_type.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
 import 'package:fresh_link_business_flutter_picking/store/auth/index.dart';
 import 'package:fresh_link_business_flutter_picking/store/auth/type.dart';
 
-/// 是否携带认证信息
+// 是否携带认证信息
 const _withHeaderKey = 'withHeader';
 
-/// 是否已经重试
+// 是否已经重试
 const _authRetriedKey = 'authRetried';
 
-/// 多个 ApiService 实例共享的 Token 刷新任务
+// 多个 ApiService 实例共享的 Token 刷新任务
 Future<String?>? _refreshFuture;
 
-/// 多个 ApiService 实例共享的商户查询任务
-Future<String?>? _merchantIdFuture;
+// 多个 ApiService 实例共享的商户查询任务
+Future<UUID?>? _merchantIdFuture;
 
-/// 全局登录失效事件状态
+// 全局登录失效事件状态
 bool _unauthorizedEmitted = false;
 
-/// 用于刷新 Access Token 的服务地址
-///
-/// 多个业务服务共享认证体系时，应使用同一个认证服务。
-String? _authBaseUrl;
-
-/// 商户编码
+// 商户编码
 String? _merchantCode;
 
-/// 商户 ID
-String? _merchantId;
+// 商户 ID
+UUID? _merchantId;
 
 class ApiService {
   late final Dio _dio;
 
-  /// 当前进行中的请求
+  // 当前进行中的请求
   final List<CancelToken> _cancelTokens = [];
 
   ApiService(String baseUrl) {
@@ -68,7 +66,7 @@ class ApiService {
             if (!isReadMerchantRequest) {
               final merchantId = await _resolveMerchantId();
 
-              if (merchantId != null && merchantId.isNotEmpty) {
+              if (merchantId != null && merchantId.isValid) {
                 options.headers['x-merchant-id'] = merchantId;
               }
             }
@@ -114,11 +112,6 @@ class ApiService {
             return handler.next(error);
           }
 
-          // 登录、刷新接口不触发自动刷新
-          if (_isAuthEndpoint(requestOptions.path)) {
-            return handler.next(error);
-          }
-
           // 已重试过的请求不再次刷新
           if (requestOptions.extra[_authRetriedKey] == true) {
             await _emitUnauthorized();
@@ -160,17 +153,12 @@ class ApiService {
     );
   }
 
-  /// 动态获取 Riverpod 中最新的认证状态
+  // 动态获取 Riverpod 中最新的认证状态
   AuthState get authStore => authContainer.read(authStoreProvider);
 
   String get baseUrl => _dio.options.baseUrl;
 
-  /// 设置全局认证服务地址
-  static void configureAuthBaseUrl(String apiUrl, int port) {
-    _authBaseUrl = '$apiUrl:$port';
-  }
-
-  /// 设置商户编码
+  // 设置商户编码
   static void configureMerchantCode(String code) {
     if (_merchantCode == code) {
       return;
@@ -181,24 +169,24 @@ class ApiService {
     _merchantIdFuture = null;
   }
 
-  /// 设置商户 ID
-  static void configureMerchantId(String? merchantId) {
+  // 设置商户 ID
+  static void configureMerchantId(UUID? merchantId) {
     _merchantId = merchantId;
     _merchantIdFuture = null;
   }
 
-  /// 清除商户信息
+  // 清除商户信息
   static void clearMerchant() {
     _merchantCode = null;
     _merchantId = null;
     _merchantIdFuture = null;
   }
 
-  /// 获取商户 ID
-  Future<String?> _resolveMerchantId() async {
+  // 获取商户 ID
+  Future<UUID?> _resolveMerchantId() async {
     final merchantId = _merchantId;
 
-    if (merchantId != null && merchantId.isNotEmpty) {
+    if (merchantId != null && merchantId.isValid) {
       return merchantId;
     }
 
@@ -228,14 +216,14 @@ class ApiService {
     }
   }
 
-  /// 通过商户编码查询商户 ID
-  Future<String?> _readMerchantId(String code) async {
+  // 通过商户编码查询商户 ID
+  Future<UUID?> _readMerchantId(String code) async {
     final resp = await readMerchantRequest(code);
 
     final merchantId = resp.data.id;
 
-    if (merchantId.isEmpty) {
-      throw StateError('查询商户成功，但商户 ID 为空');
+    if (!merchantId.isValid) {
+      throw StateError('查询商户成功，但商户 ID 无效');
     }
 
     // 避免切换商户后，旧请求覆盖新的商户 ID
@@ -246,13 +234,6 @@ class ApiService {
     return merchantId;
   }
 
-  bool _isAuthEndpoint(String path) {
-    final normalizedPath = Uri.tryParse(path)?.path ?? path;
-
-    return normalizedPath == '/api/v1/login' ||
-        normalizedPath == '/api/v1/access-token/refresh';
-  }
-
   String? _bearerToken(Object? authorization) {
     if (authorization is! String || !authorization.startsWith('Bearer ')) {
       return null;
@@ -261,9 +242,9 @@ class ApiService {
     return authorization.substring(7);
   }
 
-  /// 刷新 Access Token
-  ///
-  /// 多个 ApiService 实例共享同一个刷新任务。
+  // 刷新 Access Token
+  //
+  // 多个 ApiService 实例共享同一个刷新任务。
   Future<String?> _refreshToken(String? failedToken) async {
     final currentToken = authStore.accessToken;
 
@@ -301,48 +282,24 @@ class ApiService {
     final refreshToken = auth.refreshToken;
 
     if (userId == null ||
-        userId.isEmpty ||
+        !userId.isValid ||
         refreshToken == null ||
         refreshToken.isEmpty) {
       return null;
     }
 
-    final merchantId = await _resolveMerchantId();
-
-    final refreshDio = Dio(
-      BaseOptions(
-        baseUrl: _authBaseUrl ?? baseUrl,
-        connectTimeout: const Duration(seconds: 30),
-        receiveTimeout: const Duration(seconds: 30),
-        headers: {
-          'x-operator-type': EnumOperatorType.seller.value,
-          if (merchantId != null) 'x-merchant-id': merchantId,
-        },
-      ),
-    );
-
     try {
-      final response = await refreshDio.post<Map<String, dynamic>>(
-        '/api/v1/access-token/refresh',
-        data: {'refreshToken': refreshToken, 'userId': userId},
+      final res = await refreshAccessTokenRequest(
+        ConfigRefreshAccessTokenReq(refreshToken: refreshToken, userId: userId),
       );
 
-      final body = response.data;
-
-      if (body == null) {
+      if (res.code != "200") {
         return null;
       }
 
-      // ConfigApiRespT<ConfigRefreshAccessTokenResp>
-      final data = body['data'];
+      final accessToken = res.data.accessToken;
 
-      if (data is! Map<String, dynamic>) {
-        return null;
-      }
-
-      final accessToken = data['accessToken'];
-
-      if (accessToken is! String || accessToken.isEmpty) {
+      if (accessToken.isEmpty) {
         return null;
       }
 
@@ -368,12 +325,10 @@ class ApiService {
       talker.handle(e, stackTrace, 'Unexpected token refresh error');
 
       return null;
-    } finally {
-      refreshDio.close(force: true);
     }
   }
 
-  /// 登录失效
+  // 登录失效
   Future<void> _emitUnauthorized() async {
     if (_unauthorizedEmitted) {
       return;
@@ -386,12 +341,12 @@ class ApiService {
     eventBus.emit(UnauthorizedEvent());
   }
 
-  /// 登录成功后调用
+  // 登录成功后调用
   static void resetUnauthorized() {
     _unauthorizedEmitted = false;
   }
 
-  /// GET 请求
+  // GET 请求
   Future<Response<dynamic>> getRequest(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
@@ -409,7 +364,7 @@ class ApiService {
     );
   }
 
-  /// POST 请求
+  // POST 请求
   Future<Response<dynamic>> postRequest(
     String endpoint, {
     Object? data,
@@ -427,7 +382,7 @@ class ApiService {
     );
   }
 
-  /// PUT 请求
+  // PUT 请求
   Future<Response<dynamic>> putRequest(
     String endpoint, {
     Object? data,
@@ -445,7 +400,7 @@ class ApiService {
     );
   }
 
-  /// PATCH 请求
+  // PATCH 请求
   Future<Response<dynamic>> patchRequest(
     String endpoint, {
     Object? data,
@@ -463,7 +418,7 @@ class ApiService {
     );
   }
 
-  /// DELETE 请求
+  // DELETE 请求
   Future<Response<dynamic>> deleteRequest(
     String endpoint, {
     Object? data,
@@ -481,7 +436,7 @@ class ApiService {
     );
   }
 
-  /// 统一发送请求
+  // 统一发送请求
   Future<Response<dynamic>> _sendRequest(
     String endpoint, {
     required String method,
@@ -527,7 +482,7 @@ class ApiService {
     }
   }
 
-  /// 取消所有请求
+  // 取消所有请求
   void cancelAllRequests() {
     for (final token in _cancelTokens) {
       if (!token.isCancelled) {
@@ -538,7 +493,7 @@ class ApiService {
     _cancelTokens.clear();
   }
 
-  /// 释放资源
+  // 释放资源
   void dispose() {
     cancelAllRequests();
     _dio.close(force: true);

@@ -9,12 +9,38 @@ class AppRouter extends RootStackRouter {
       page: LoginRoute.page,
       path: '/login',
       transitionsBuilder: TransitionsBuilders.noTransition,
-      initial: true,
     ),
     CustomRoute(
-      page: HomeRoute.page,
+      page: WorkspaceRoute.page,
+      path: '/workspace',
+      initial: true,
       transitionsBuilder: TransitionsBuilders.noTransition,
-      path: '/home',
+      children: [
+        CustomRoute(
+          page: HomeRoute.page,
+          path: 'home',
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
+        CustomRoute(
+          page: ProductPickingWorkspaceRoute.page,
+          path: 'product-picking',
+          initial: true,
+          transitionsBuilder: TransitionsBuilders.noTransition,
+          children: [
+            CustomRoute(
+              page: ProductPickingRoute.page,
+              path: '',
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+            CustomRoute(
+              page: ProductPickingConsumerRoute.page,
+              path: 'consumer',
+              initial: true,
+              transitionsBuilder: TransitionsBuilders.noTransition,
+            ),
+          ],
+        ),
+      ],
     ),
   ];
 }

@@ -8,6 +8,15 @@
   },
   "cSpell.words": [
     "Lucide",
-    "shadcn"
-  ]
+    "shadcn",
+    "skus",
+    "spus",
+    "Stockable"
+  ],
+  "material-icon-theme.folders.associations": {
+    "component": "components",
+    "components": "components",
+    "type": "typescript",
+    "types": "typescript"
+  },
 }

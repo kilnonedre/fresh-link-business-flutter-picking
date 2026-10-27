@@ -289,7 +289,7 @@ as String,
 /// @nodoc
 mixin _$ConfigLoginResp {
 
- String get id; String get accessToken; String get refreshToken;
+@UUIDConverter() UUID get id; String get accessToken; String get refreshToken;
 /// Create a copy of ConfigLoginResp
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -327,7 +327,7 @@ abstract mixin class $ConfigLoginRespCopyWith<$Res>  {
   factory $ConfigLoginRespCopyWith(ConfigLoginResp value, $Res Function(ConfigLoginResp) _then) = _$ConfigLoginRespCopyWithImpl;
 @useResult
 $Res call({
- String id, String accessToken, String refreshToken
+@UUIDConverter() UUID id, String accessToken, String refreshToken
 });
 
 
@@ -347,7 +347,7 @@ class _$ConfigLoginRespCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? accessToken = null,Object? refreshToken = null,}) {
   return _then(ConfigLoginResp(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as UUID,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
 as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -434,7 +434,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String accessToken,  String refreshToken)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  String accessToken,  String refreshToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConfigLoginResp() when $default != null:
 return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
@@ -455,7 +455,7 @@ return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String accessToken,  String refreshToken)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  String accessToken,  String refreshToken)  $default,) {final _that = this;
 switch (_that) {
 case _ConfigLoginResp():
 return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
@@ -475,7 +475,7 @@ return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String accessToken,  String refreshToken)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@UUIDConverter()  UUID id,  String accessToken,  String refreshToken)?  $default,) {final _that = this;
 switch (_that) {
 case _ConfigLoginResp() when $default != null:
 return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
@@ -490,10 +490,10 @@ return $default(_that.id,_that.accessToken,_that.refreshToken);case _:
 @JsonSerializable()
 
 class _ConfigLoginResp implements ConfigLoginResp {
-  const _ConfigLoginResp({required this.id, required this.accessToken, required this.refreshToken});
+  const _ConfigLoginResp({@UUIDConverter() required this.id, required this.accessToken, required this.refreshToken});
   factory _ConfigLoginResp.fromJson(Map<String, dynamic> json) => _$ConfigLoginRespFromJson(json);
 
-@override final  String id;
+@override@UUIDConverter() final  UUID id;
 @override final  String accessToken;
 @override final  String refreshToken;
 
@@ -532,7 +532,7 @@ abstract mixin class _$ConfigLoginRespCopyWith<$Res> implements $ConfigLoginResp
   factory _$ConfigLoginRespCopyWith(_ConfigLoginResp value, $Res Function(_ConfigLoginResp) _then) = __$ConfigLoginRespCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String accessToken, String refreshToken
+@UUIDConverter() UUID id, String accessToken, String refreshToken
 });
 
 
@@ -552,7 +552,7 @@ class __$ConfigLoginRespCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? accessToken = null,Object? refreshToken = null,}) {
   return _then(_ConfigLoginResp(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
+as UUID,accessToken: null == accessToken ? _self.accessToken : accessToken // ignore: cast_nullable_to_non_nullable
 as String,refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,
   ));
@@ -565,7 +565,7 @@ as String,
 /// @nodoc
 mixin _$ConfigRefreshAccessTokenReq {
 
- String get refreshToken; String get userId;
+ String get refreshToken;@UUIDConverter() UUID get userId;
 /// Create a copy of ConfigRefreshAccessTokenReq
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -603,7 +603,7 @@ abstract mixin class $ConfigRefreshAccessTokenReqCopyWith<$Res>  {
   factory $ConfigRefreshAccessTokenReqCopyWith(ConfigRefreshAccessTokenReq value, $Res Function(ConfigRefreshAccessTokenReq) _then) = _$ConfigRefreshAccessTokenReqCopyWithImpl;
 @useResult
 $Res call({
- String refreshToken, String userId
+ String refreshToken,@UUIDConverter() UUID userId
 });
 
 
@@ -624,7 +624,7 @@ class _$ConfigRefreshAccessTokenReqCopyWithImpl<$Res>
   return _then(ConfigRefreshAccessTokenReq(
 refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,
+as UUID,
   ));
 }
 
@@ -709,7 +709,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String refreshToken,  String userId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String refreshToken, @UUIDConverter()  UUID userId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ConfigRefreshAccessTokenReq() when $default != null:
 return $default(_that.refreshToken,_that.userId);case _:
@@ -730,7 +730,7 @@ return $default(_that.refreshToken,_that.userId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String refreshToken,  String userId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String refreshToken, @UUIDConverter()  UUID userId)  $default,) {final _that = this;
 switch (_that) {
 case _ConfigRefreshAccessTokenReq():
 return $default(_that.refreshToken,_that.userId);case _:
@@ -750,7 +750,7 @@ return $default(_that.refreshToken,_that.userId);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String refreshToken,  String userId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String refreshToken, @UUIDConverter()  UUID userId)?  $default,) {final _that = this;
 switch (_that) {
 case _ConfigRefreshAccessTokenReq() when $default != null:
 return $default(_that.refreshToken,_that.userId);case _:
@@ -765,11 +765,11 @@ return $default(_that.refreshToken,_that.userId);case _:
 @JsonSerializable()
 
 class _ConfigRefreshAccessTokenReq implements ConfigRefreshAccessTokenReq {
-  const _ConfigRefreshAccessTokenReq({required this.refreshToken, required this.userId});
+  const _ConfigRefreshAccessTokenReq({required this.refreshToken, @UUIDConverter() required this.userId});
   factory _ConfigRefreshAccessTokenReq.fromJson(Map<String, dynamic> json) => _$ConfigRefreshAccessTokenReqFromJson(json);
 
 @override final  String refreshToken;
-@override final  String userId;
+@override@UUIDConverter() final  UUID userId;
 
 /// Create a copy of ConfigRefreshAccessTokenReq
 /// with the given fields replaced by the non-null parameter values.
@@ -806,7 +806,7 @@ abstract mixin class _$ConfigRefreshAccessTokenReqCopyWith<$Res> implements $Con
   factory _$ConfigRefreshAccessTokenReqCopyWith(_ConfigRefreshAccessTokenReq value, $Res Function(_ConfigRefreshAccessTokenReq) _then) = __$ConfigRefreshAccessTokenReqCopyWithImpl;
 @override @useResult
 $Res call({
- String refreshToken, String userId
+ String refreshToken,@UUIDConverter() UUID userId
 });
 
 
@@ -827,7 +827,7 @@ class __$ConfigRefreshAccessTokenReqCopyWithImpl<$Res>
   return _then(_ConfigRefreshAccessTokenReq(
 refreshToken: null == refreshToken ? _self.refreshToken : refreshToken // ignore: cast_nullable_to_non_nullable
 as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,
+as UUID,
   ));
 }
 

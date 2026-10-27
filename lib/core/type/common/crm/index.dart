@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
 
 part 'index.freezed.dart';
 part 'index.g.dart';
@@ -7,13 +8,13 @@ part 'index.g.dart';
 abstract class CommonCrmAccount with _$CommonCrmAccount {
   const factory CommonCrmAccount({
     // ID
-    required String id,
+    @UUIDConverter() required UUID id,
 
     // 商家
     required CommonCrmMerchant merchant,
 
     // 档案 ID
-    required String profileId,
+    @UUIDConverter() required UUID profileId,
 
     // 用户名
     required String username,
@@ -38,7 +39,7 @@ abstract class CommonCrmAccount with _$CommonCrmAccount {
 abstract class CommonCrmMerchant with _$CommonCrmMerchant {
   const factory CommonCrmMerchant({
     // ID
-    required String id,
+    @UUIDConverter() required UUID id,
 
     // 名称
     required String name,
@@ -50,7 +51,7 @@ abstract class CommonCrmMerchant with _$CommonCrmMerchant {
     required String? licenseNo,
 
     // Logo ID
-    required String? logoId,
+    @UUIDConverter() required UUID? logoId,
   }) = _CommonCrmMerchant;
 
   factory CommonCrmMerchant.fromJson(Map<String, dynamic> json) =>

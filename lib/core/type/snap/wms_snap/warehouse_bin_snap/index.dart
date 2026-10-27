@@ -1,0 +1,37 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/decimal.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/enum/wms/warehouse_bin_type.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/snap/crm_snap/merchant_snap/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/snap/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/snap/wms_snap/warehouse_snap/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/snap/wms_snap/warehouse_bin_no_path_snap/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
+
+part 'index.freezed.dart';
+part 'index.g.dart';
+
+@freezed
+abstract class ConfigWmsWarehouseBinSnap
+    with _$ConfigWmsWarehouseBinSnap, CommonSnap {
+  const ConfigWmsWarehouseBinSnap._();
+
+  const factory ConfigWmsWarehouseBinSnap({
+    @UUIDConverter() required UUID id,
+    required ConfigMerchantSnap merchantSnap,
+
+    required ConfigWmsWarehouseSnap warehouseSnap, // 仓库
+    required String name, // 名称
+    required String code, // 编码
+    required EnumWarehouseBinType type, // 类型
+    required List<ConfigWmsWarehouseBinNoPathSnap> pathSnaps, // 路径
+    required int? sort, // 排序
+    required int level, // 层级
+    required bool isStockable, // 是否可存储
+    @DecimalConverter() required Decimal? capacityWeight, // 容量（重量）
+    @DecimalConverter() required Decimal? capacityVolume, // 容量（体积）
+    required String? remark, // 备注
+  }) = _ConfigWmsWarehouseBinSnap;
+
+  factory ConfigWmsWarehouseBinSnap.fromJson(Map<String, dynamic> json) =>
+      _$ConfigWmsWarehouseBinSnapFromJson(json);
+}
