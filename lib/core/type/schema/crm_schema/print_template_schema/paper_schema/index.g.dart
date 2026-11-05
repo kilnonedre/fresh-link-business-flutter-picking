@@ -26,8 +26,8 @@ const _$EnumPaperTypeEnumMap = {
   EnumPaperType.a5: 'A5',
   EnumPaperType.b4: 'B4',
   EnumPaperType.b5: 'B5',
-  EnumPaperType.receipt80mm: 'RECEIPT80MM',
-  EnumPaperType.receipt58mm: 'RECEIPT58MM',
-  EnumPaperType.waybill100x150: 'WAYBILL100X150',
-  EnumPaperType.label60x40: 'LABEL60X40',
+  EnumPaperType.receipt80mm: 'RECEIPT_80MM',
+  EnumPaperType.receipt58mm: 'RECEIPT_58MM',
+  EnumPaperType.waybill100x150: 'WAYBILL_100X150',
+  EnumPaperType.label60x50: 'LABEL_60X50',
 };

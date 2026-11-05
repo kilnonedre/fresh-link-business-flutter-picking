@@ -48,6 +48,8 @@ dependencies:
   hive_ce: ^2.22.0
   talker: ^5.2.0
   flutter_dotenv: ^6.0.1
+  pdf: ^3.13.1
+  printing: ^5.15.1
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +80,8 @@ flutter:
   assets:
     - .env.development
     - .env.production
+
+    - asset/font/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

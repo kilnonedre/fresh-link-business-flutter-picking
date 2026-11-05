@@ -10,62 +10,81 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
-import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart' as _i9;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
+import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart'
+    as _i10;
 import 'package:fresh_link_business_flutter_picking/page/auth_page/page/login_page/index.dart'
-    as _i2;
-import 'package:fresh_link_business_flutter_picking/page/workspace_page/index.dart'
-    as _i6;
-import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/home_page/index.dart'
-    as _i1;
-import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/index.dart'
-    as _i5;
-import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_customer_page/index.dart'
     as _i3;
-import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_page/index.dart'
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/index.dart'
+    as _i7;
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/config_page/index.dart'
+    as _i1;
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/home_page/index.dart'
+    as _i2;
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/index.dart'
+    as _i6;
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_customer_page/index.dart'
     as _i4;
+import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_page/index.dart'
+    as _i5;
 
 /// generated route for
-/// [_i1.HomePage]
-class HomeRoute extends _i7.PageRouteInfo<void> {
-  const HomeRoute({List<_i7.PageRouteInfo>? children})
+/// [_i1.ConfigPage]
+class ConfigRoute extends _i8.PageRouteInfo<void> {
+  const ConfigRoute({List<_i8.PageRouteInfo>? children})
+    : super(ConfigRoute.name, initialChildren: children);
+
+  static const String name = 'ConfigRoute';
+
+  static _i8.PageInfo page = _i8.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.ConfigPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.HomePage]
+class HomeRoute extends _i8.PageRouteInfo<void> {
+  const HomeRoute({List<_i8.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i1.HomePage();
+      return const _i2.HomePage();
     },
   );
 }
 
 /// generated route for
-/// [_i2.LoginPage]
-class LoginRoute extends _i7.PageRouteInfo<void> {
-  const LoginRoute({List<_i7.PageRouteInfo>? children})
+/// [_i3.LoginPage]
+class LoginRoute extends _i8.PageRouteInfo<void> {
+  const LoginRoute({List<_i8.PageRouteInfo>? children})
     : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i2.LoginPage();
+      return const _i3.LoginPage();
     },
   );
 }
 
 /// generated route for
-/// [_i3.ProductPickingConsumerPage]
+/// [_i4.ProductPickingConsumerPage]
 class ProductPickingConsumerRoute
-    extends _i7.PageRouteInfo<ProductPickingConsumerRouteArgs> {
+    extends _i8.PageRouteInfo<ProductPickingConsumerRouteArgs> {
   ProductPickingConsumerRoute({
-    _i8.Key? key,
-    required _i9.UUID productSpuId,
-    List<_i7.PageRouteInfo>? children,
+    _i9.Key? key,
+    required _i10.UUID productSpuId,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
          ProductPickingConsumerRoute.name,
          args: ProductPickingConsumerRouteArgs(
@@ -77,11 +96,11 @@ class ProductPickingConsumerRoute
 
   static const String name = 'ProductPickingConsumerRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProductPickingConsumerRouteArgs>();
-      return _i3.ProductPickingConsumerPage(
+      return _i4.ProductPickingConsumerPage(
         key: args.key,
         productSpuId: args.productSpuId,
       );
@@ -92,9 +111,9 @@ class ProductPickingConsumerRoute
 class ProductPickingConsumerRouteArgs {
   const ProductPickingConsumerRouteArgs({this.key, required this.productSpuId});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
-  final _i9.UUID productSpuId;
+  final _i10.UUID productSpuId;
 
   @override
   String toString() {
@@ -113,49 +132,49 @@ class ProductPickingConsumerRouteArgs {
 }
 
 /// generated route for
-/// [_i4.ProductPickingPage]
-class ProductPickingRoute extends _i7.PageRouteInfo<void> {
-  const ProductPickingRoute({List<_i7.PageRouteInfo>? children})
+/// [_i5.ProductPickingPage]
+class ProductPickingRoute extends _i8.PageRouteInfo<void> {
+  const ProductPickingRoute({List<_i8.PageRouteInfo>? children})
     : super(ProductPickingRoute.name, initialChildren: children);
 
   static const String name = 'ProductPickingRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i4.ProductPickingPage();
+      return const _i5.ProductPickingPage();
     },
   );
 }
 
 /// generated route for
-/// [_i5.ProductPickingWorkspacePage]
-class ProductPickingWorkspaceRoute extends _i7.PageRouteInfo<void> {
-  const ProductPickingWorkspaceRoute({List<_i7.PageRouteInfo>? children})
+/// [_i6.ProductPickingWorkspacePage]
+class ProductPickingWorkspaceRoute extends _i8.PageRouteInfo<void> {
+  const ProductPickingWorkspaceRoute({List<_i8.PageRouteInfo>? children})
     : super(ProductPickingWorkspaceRoute.name, initialChildren: children);
 
   static const String name = 'ProductPickingWorkspaceRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i5.ProductPickingWorkspacePage();
+      return const _i6.ProductPickingWorkspacePage();
     },
   );
 }
 
 /// generated route for
-/// [_i6.WorkspacePage]
-class WorkspaceRoute extends _i7.PageRouteInfo<void> {
-  const WorkspaceRoute({List<_i7.PageRouteInfo>? children})
+/// [_i7.WorkspacePage]
+class WorkspaceRoute extends _i8.PageRouteInfo<void> {
+  const WorkspaceRoute({List<_i8.PageRouteInfo>? children})
     : super(WorkspaceRoute.name, initialChildren: children);
 
   static const String name = 'WorkspaceRoute';
 
-  static _i7.PageInfo page = _i7.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i6.WorkspacePage();
+      return const _i7.WorkspacePage();
     },
   );
 }

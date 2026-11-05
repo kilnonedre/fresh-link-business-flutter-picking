@@ -469,7 +469,12 @@ class ApiService {
       if (e.type == DioExceptionType.cancel) {
         talker.info('Request cancelled: $endpoint');
       } else {
-        talker.handle(e, stackTrace, 'HTTP request failed: $endpoint');
+        talker.error(
+          'HTTP request failed: $endpoint\n'
+          'Status: ${e.response?.statusCode}\n'
+          'Request: ${e.requestOptions.data}\n'
+          'Response: ${e.response?.data}',
+        );
       }
 
       rethrow;

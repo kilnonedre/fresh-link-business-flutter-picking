@@ -24,18 +24,18 @@ enum EnumPaperType {
   b5,
 
   // 80mm 小票
-  @JsonValue('RECEIPT80MM')
+  @JsonValue('RECEIPT_80MM')
   receipt80mm,
 
   // 58mm 小票
-  @JsonValue('RECEIPT58MM')
+  @JsonValue('RECEIPT_58MM')
   receipt58mm,
 
   // 100 × 150 mm 面单
-  @JsonValue('WAYBILL100X150')
+  @JsonValue('WAYBILL_100X150')
   waybill100x150,
 
   // 60 × 40 mm 标签
-  @JsonValue('LABEL60X40')
-  label60x40,
+  @JsonValue('LABEL_60X50')
+  label60x50,
 }

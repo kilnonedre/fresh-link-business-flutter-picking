@@ -40,6 +40,11 @@ class AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        CustomRoute(
+          page: ConfigRoute.page,
+          path: 'config',
+          transitionsBuilder: TransitionsBuilders.noTransition,
+        ),
       ],
     ),
   ];

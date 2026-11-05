@@ -65,27 +65,35 @@ class TsplPrinter {
     required int bitmapHeight,
     required int paperWidthMm,
     required int paperHeightMm,
-    int offsetX = 0,
+    int offsetX = 20,
     int offsetY = 0,
+    int shift = 0,
     int gapMm = 2,
     int copies = 1,
   }) {
     final bytesPerRow = (bitmapWidth + 7) ~/ 8;
-    if (bitmap.length != bytesPerRow * bitmapHeight)
+
+    if (bitmap.length != bytesPerRow * bitmapHeight) {
       throw ArgumentError('位图数据长度错误');
+    }
+
     final builder = BytesBuilder(copy: false);
+
     builder.add(
       ascii.encode(
         'SIZE $paperWidthMm mm,$paperHeightMm mm\r\n'
         'GAP $gapMm mm,0 mm\r\n'
         'DIRECTION 1\r\n'
         'REFERENCE 0,0\r\n'
+        'SHIFT $shift\r\n'
         'CLS\r\n'
         'BITMAP $offsetX,$offsetY,$bytesPerRow,$bitmapHeight,0,',
       ),
     );
+
     builder.add(bitmap);
     builder.add(ascii.encode('\r\nPRINT 1,$copies\r\n'));
+
     return builder.toBytes();
   }
 
@@ -121,5 +129,25 @@ class TsplPrinter {
         .map((s) => s.trim())
         .where((s) => s.isNotEmpty)
         .toList();
+  }
+
+  static Future<String> testPrintPosition({
+    required String printerName,
+    int shift = 80,
+  }) async {
+    final commands = Uint8List.fromList(
+      ascii.encode(
+        'SIZE 60 mm,40 mm\r\n'
+        'GAP 2 mm,0 mm\r\n'
+        'DIRECTION 1\r\n'
+        'REFERENCE 0,0\r\n'
+        'SHIFT $shift\r\n'
+        'CLS\r\n'
+        'BAR 0,0,400,4\r\n'
+        'PRINT 1,1\r\n',
+      ),
+    );
+
+    return printRaw(printerName: printerName, commands: commands);
   }
 }

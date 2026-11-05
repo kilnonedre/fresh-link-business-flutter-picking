@@ -8,6 +8,7 @@ import 'package:fresh_link_business_flutter_picking/core/event/type.dart';
 import 'package:fresh_link_business_flutter_picking/core/network/api_service.dart';
 import 'package:fresh_link_business_flutter_picking/core/router/index.dart';
 import 'package:fresh_link_business_flutter_picking/core/router/index.gr.dart';
+import 'package:fresh_link_business_flutter_picking/core/toast/index.dart';
 import 'package:fresh_link_business_flutter_picking/store/auth/index.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
@@ -90,6 +91,13 @@ class _AppState extends State<App> {
         colorScheme: const ShadSlateColorScheme.dark(),
       ),
       themeMode: ThemeMode.light,
+      builder: (context, child) {
+        return ShadSonner(
+          key: ToastService.key,
+          alignment: Alignment.topRight,
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
     );
   }
 }

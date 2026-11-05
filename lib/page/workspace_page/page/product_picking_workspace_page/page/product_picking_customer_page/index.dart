@@ -1,42 +1,51 @@
+import 'dart:convert';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fresh_link_business_flutter_picking/api/catalog/product_sku/index.dart';
 import 'package:fresh_link_business_flutter_picking/api/catalog/product_sku/type.dart';
+import 'package:fresh_link_business_flutter_picking/api/crm/print_template/index.dart';
+import 'package:fresh_link_business_flutter_picking/api/crm/print_template/type.dart';
 import 'package:fresh_link_business_flutter_picking/api/wms/picking_order_product/index.dart';
 import 'package:fresh_link_business_flutter_picking/api/wms/picking_order_product/type.dart';
 import 'package:fresh_link_business_flutter_picking/core/logger/index.dart';
-import 'package:fresh_link_business_flutter_picking/core/printing/print_template_page.dart';
+import 'package:fresh_link_business_flutter_picking/core/print/pdf_tspl_service.dart';
 import 'package:fresh_link_business_flutter_picking/core/theme/spacing.dart';
-import 'package:fresh_link_business_flutter_picking/core/type/schema/crm_schema/print_template_schema/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/toast/index.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/enum/crm/print_template_biz_type.dart';
+import 'package:fresh_link_business_flutter_picking/core/type/enum/wms/picking_status.dart';
 import 'package:fresh_link_business_flutter_picking/core/type/uuid.dart';
 import 'package:fresh_link_business_flutter_picking/layout/base_layout/index.dart';
 import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_customer_page/component/product_picking_card/index.dart';
 import 'package:fresh_link_business_flutter_picking/page/workspace_page/page/product_picking_workspace_page/page/product_picking_customer_page/component/product_sku_card/index.dart';
+import 'package:fresh_link_business_flutter_picking/store/config/index.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
 @RoutePage()
-class ProductPickingConsumerPage extends StatefulWidget {
+class ProductPickingConsumerPage extends ConsumerStatefulWidget {
   final UUID productSpuId;
 
   const ProductPickingConsumerPage({super.key, required this.productSpuId});
 
   @override
-  State<ProductPickingConsumerPage> createState() =>
+  ConsumerState<ProductPickingConsumerPage> createState() =>
       _ProductPickingConsumerPageState();
 }
 
 class _ProductPickingConsumerPageState
-    extends State<ProductPickingConsumerPage> {
+    extends ConsumerState<ProductPickingConsumerPage> {
   List<ConfigProductSkuResp> _productSkuList = [];
-  Set<UUID> _selectedProductSkuIdSet = {};
+  final Set<UUID> _selectedProductSkuIdSet = {};
   List<ConfigPickingOrderProductResp> _pickingOrderProductList = [];
+
+  bool _printing = false;
 
   @override
   void initState() {
     super.initState();
-    final productSpuId = widget.productSpuId;
 
-    _renderProductSkuList(productSpuId);
+    _renderProductSkuList(widget.productSpuId);
   }
 
   Future<void> _renderProductSkuList(UUID productSpuId) async {
@@ -52,6 +61,8 @@ class _ProductPickingConsumerPageState
       talker.error(res.msg);
       return;
     }
+
+    if (!mounted) return;
 
     setState(() {
       _productSkuList = res.data.items;
@@ -72,14 +83,101 @@ class _ProductPickingConsumerPageState
       return;
     }
 
+    if (!mounted) return;
+
     setState(() {
       _pickingOrderProductList = res.data.items;
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Future<ConfigPrintTemplateResp?> _readDefaultPrintTemplate() async {
+    final res = await readDefaultPrintTemplateRequest(
+      ConfigReadDefaultPrintTemplateReq(
+        bizType: EnumPrintTemplateBizType.wmsPickingOrderProduct,
+      ),
+    );
+
+    if (res.code != "200") {
+      talker.error(res.msg);
+      return null;
+    }
+
+    return res.data;
+  }
+
+  Future<void> _batchPatchPickingOrderProduct() async {
+    final items = _pickingOrderProductList.map((product) {
+      return ConfigBatchPatchPickingOrderProductItemReq(
+        id: product.id,
+        pickingStatus: EnumPickingStatus.picked,
+        incPrintedCount: true,
+        pickedQuantity: product.quantity,
+        updatedReason: '用户执行一键打印操作，更新商品分拣状态为已完成，并增加打印次数',
+      );
+    }).toList();
+
+    final res = await batchPatchPickingOrderProductRequest(
+      ConfigBatchPatchPickingOrderProductReq(items: items),
+    );
+
+    if (res.code != "200") {
+      throw Exception('更新分拣商品失败：${res.msg}');
+    }
+  }
+
+  Future<void> _printPickingOrderProducts() async {
+    if (_printing) return;
+
+    final printerName = ref.read(configStoreProvider).defaultPrinter;
+
+    if (printerName == null || printerName.isEmpty) {
+      ToastService.warning('请先在设置中选择默认打印机');
+      return;
+    }
+
+    if (_pickingOrderProductList.isEmpty) {
+      ToastService.warning('打印已取消：没有需要打印的分拣商品');
+      return;
+    }
+
+    setState(() {
+      _printing = true;
+    });
+
+    try {
+      final printTemplate = await _readDefaultPrintTemplate();
+
+      if (printTemplate == null) {
+        talker.error('打印失败：未找到可用的默认打印模板');
+        return;
+      }
+
+      await PdfTsplService.print(
+        printerName: printerName,
+        template: printTemplate.template,
+        data: _pickingOrderProductList
+            .map(
+              (item) =>
+                  jsonDecode(jsonEncode(item.toJson())) as Map<String, dynamic>,
+            )
+            .toList(),
+        invertColors: true,
+      );
+
+      await _batchPatchPickingOrderProduct();
+
+      talker.info('打印任务提交成功，分拣商品状态及打印次数已更新');
+
+      await _renderPickingOrderProductList();
+    } catch (e, stackTrace) {
+      talker.error('一键打印失败', e, stackTrace);
+    } finally {
+      if (mounted) {
+        setState(() {
+          _printing = false;
+        });
+      }
+    }
   }
 
   @override
@@ -88,29 +186,9 @@ class _ProductPickingConsumerPageState
       title: "商品分拣",
       actions: [
         ShadButton(
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => PrintTemplatePage(
-                  template: template,
-                  data: [
-                    {
-                      'organizationName': '龙湾区第二小学',
-                      'productName': '土豆',
-                      'quantity': 20,
-                    },
-                    {
-                      'organizationName': '龙湾区第三小学',
-                      'productName': '西红柿',
-                      'quantity': 15,
-                    },
-                  ],
-                ),
-              ),
-            );
-          },
+          onPressed: _printing ? null : _printPickingOrderProducts,
           leading: const Icon(Icons.print, size: 18),
-          child: const Text('一键打印'),
+          child: Text(_printing ? '打印中...' : '一键打印'),
         ),
       ],
       child: Row(
@@ -128,9 +206,12 @@ class _ProductPickingConsumerPageState
                       name: sku.productSkuUnit.name,
                       isSelected: _selectedProductSkuIdSet.contains(sku.id),
                       onTap: () {
-                        if (!_selectedProductSkuIdSet.add(sku.id)) {
-                          _selectedProductSkuIdSet.remove(sku.id);
-                        }
+                        setState(() {
+                          if (!_selectedProductSkuIdSet.add(sku.id)) {
+                            _selectedProductSkuIdSet.remove(sku.id);
+                          }
+                        });
+
                         _renderPickingOrderProductList();
                       },
                     ),
@@ -171,119 +252,3 @@ class _ProductPickingConsumerPageState
     );
   }
 }
-
-final template = ConfigCrmPrintTemplateSchema.fromJson({
-  'paper': {
-    'type': 'LABEL60X40',
-    'size': {'width': 60, 'height': 40},
-  },
-  'elements': [
-    {
-      'id': '00000000-0000-4000-8000-000000000001',
-      'x': 2.0,
-      'y': 2.0,
-      'width': 56.0,
-      'height': 5.0,
-      'type': 'TEXT',
-      'props': {
-        'text': '商品分拣标签',
-        'fontSize': 18.0,
-        'fontWeight': 'bold',
-        'textAlign': 'center',
-        'color': '#000000',
-      },
-    },
-    {
-      'id': '00000000-0000-4000-8000-000000000002',
-      'x': 2.0,
-      'y': 9.0,
-      'width': 56.0,
-      'height': 5.0,
-      'type': 'FIELD',
-      'props': {
-        'field': {
-          'name': '学校名称',
-          'field': 'organizationName',
-          'type': 'STRING',
-          'width': null,
-        },
-        'fontSize': 20.0,
-        'fontWeight': 'bold',
-        'textAlign': 'left',
-        'color': '#000000',
-      },
-    },
-    {
-      'id': '00000000-0000-4000-8000-000000000003',
-      'x': 2.0,
-      'y': 16.0,
-      'width': 35.0,
-      'height': 6.0,
-      'type': 'FIELD',
-      'props': {
-        'field': {
-          'name': '商品名称',
-          'field': 'productName',
-          'type': 'STRING',
-          'width': null,
-        },
-        'fontSize': 22.0,
-        'fontWeight': 'bold',
-        'textAlign': 'left',
-        'color': '#000000',
-      },
-    },
-    {
-      'id': '00000000-0000-4000-8000-000000000004',
-      'x': 38.0,
-      'y': 16.0,
-      'width': 20.0,
-      'height': 6.0,
-      'type': 'FIELD',
-      'props': {
-        'field': {
-          'name': '数量',
-          'field': 'quantity',
-          'type': 'NUMBER',
-          'width': null,
-        },
-        'fontSize': 24.0,
-        'fontWeight': 'bold',
-        'textAlign': 'right',
-        'color': '#000000',
-      },
-    },
-    {
-      'id': '00000000-0000-4000-8000-000000000005',
-      'x': 2.0,
-      'y': 25.0,
-      'width': 56.0,
-      'height': 13.0,
-      'type': 'TABLE',
-      'props': {
-        'columns': [
-          {
-            'name': '商品',
-            'field': 'productName',
-            'type': 'STRING',
-            'width': 35.0,
-          },
-          {'name': '数量', 'field': 'quantity', 'type': 'NUMBER', 'width': 21.0},
-        ],
-        'rowHeight': 3.0,
-        'fontSize': 10.0,
-        'color': '#000000',
-      },
-    },
-  ],
-});
-
-final data = <String, dynamic>{
-  'organizationName': '龙湾区第二小学',
-  'productName': '土豆',
-  'quantity': 20,
-  'products': [
-    {'productName': '土豆', 'quantity': 20},
-    {'productName': '西红柿', 'quantity': 15},
-  ],
-};

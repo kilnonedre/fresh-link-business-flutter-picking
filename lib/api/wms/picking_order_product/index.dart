@@ -2,6 +2,22 @@ import 'package:fresh_link_business_flutter_picking/api/wms/picking_order_produc
 import 'package:fresh_link_business_flutter_picking/core/network/index.dart';
 import 'package:fresh_link_business_flutter_picking/core/type/index.dart';
 
+Future<ConfigApiRespT<dynamic>> batchPatchPickingOrderProductRequest(
+  ConfigBatchPatchPickingOrderProductReq payload,
+) async {
+  final res = await wmsApiService.postRequest(
+    '/api/v1/picking-order-products/batch-patch',
+    data: payload.toJson(),
+  );
+
+  final resp = ConfigApiRespT<dynamic>.fromJson(
+    res.data as Map<String, dynamic>,
+    (json) => json,
+  );
+
+  return resp;
+}
+
 Future<ConfigApiRespT<ConfigListRespT<ConfigPickingOrderProductResp>>>
 listPickingOrderProductRequest(ConfigListPickingOrderProductReq payload) async {
   final res = await wmsApiService.postRequest(

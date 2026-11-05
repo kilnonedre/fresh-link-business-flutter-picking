@@ -15,6 +15,51 @@ part 'type.freezed.dart';
 part 'type.g.dart';
 
 @freezed
+abstract class ConfigPatchPickingOrderProductReq
+    with _$ConfigPatchPickingOrderProductReq {
+  const factory ConfigPatchPickingOrderProductReq({
+    EnumPickingStatus? pickingStatus, // 分拣状态
+    EnumLoadingStatus? loadingStatus, // 装车状态
+    @DecimalConverter() Decimal? pickedQuantity, // 分拣数量
+    bool? incPrintedCount, // 打印次数 +1
+    required String updatedReason, // 更新原因
+  }) = _ConfigPatchPickingOrderProductReq;
+
+  factory ConfigPatchPickingOrderProductReq.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ConfigPatchPickingOrderProductReqFromJson(json);
+}
+
+@freezed
+abstract class ConfigBatchPatchPickingOrderProductItemReq
+    with _$ConfigBatchPatchPickingOrderProductItemReq {
+  const factory ConfigBatchPatchPickingOrderProductItemReq({
+    @UUIDConverter() required UUID id,
+    EnumPickingStatus? pickingStatus, // 分拣状态
+    EnumLoadingStatus? loadingStatus, // 装车状态
+    @DecimalConverter() Decimal? pickedQuantity, // 分拣数量
+    bool? incPrintedCount, // 打印次数 +1
+    required String updatedReason, // 更新原因
+  }) = _ConfigBatchPatchPickingOrderProductItemReq;
+
+  factory ConfigBatchPatchPickingOrderProductItemReq.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ConfigBatchPatchPickingOrderProductItemReqFromJson(json);
+}
+
+@freezed
+abstract class ConfigBatchPatchPickingOrderProductReq
+    with _$ConfigBatchPatchPickingOrderProductReq {
+  const factory ConfigBatchPatchPickingOrderProductReq({
+    required List<ConfigBatchPatchPickingOrderProductItemReq> items, // 批量更新项
+  }) = _ConfigBatchPatchPickingOrderProductReq;
+
+  factory ConfigBatchPatchPickingOrderProductReq.fromJson(
+    Map<String, dynamic> json,
+  ) => _$ConfigBatchPatchPickingOrderProductReqFromJson(json);
+}
+
+@freezed
 abstract class ConfigListPickingOrderProductFilterReq
     with _$ConfigListPickingOrderProductFilterReq {
   const factory ConfigListPickingOrderProductFilterReq({

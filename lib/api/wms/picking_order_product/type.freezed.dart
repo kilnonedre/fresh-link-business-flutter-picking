@@ -14,6 +14,849 @@ part of 'type.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
+mixin _$ConfigPatchPickingOrderProductReq {
+
+ EnumPickingStatus? get pickingStatus; EnumLoadingStatus? get loadingStatus;@DecimalConverter() Decimal? get pickedQuantity; bool? get incPrintedCount; String get updatedReason;
+/// Create a copy of ConfigPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ConfigPatchPickingOrderProductReqCopyWith<ConfigPatchPickingOrderProductReq> get copyWith => _$ConfigPatchPickingOrderProductReqCopyWithImpl<ConfigPatchPickingOrderProductReq>(this as ConfigPatchPickingOrderProductReq, _$identity);
+
+  /// Serializes this ConfigPatchPickingOrderProductReq to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as ConfigPatchPickingOrderProductReq;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigPatchPickingOrderProductReq&&(identical(other.pickingStatus, _this.pickingStatus) || other.pickingStatus == _this.pickingStatus)&&(identical(other.loadingStatus, _this.loadingStatus) || other.loadingStatus == _this.loadingStatus)&&(identical(other.pickedQuantity, _this.pickedQuantity) || other.pickedQuantity == _this.pickedQuantity)&&(identical(other.incPrintedCount, _this.incPrintedCount) || other.incPrintedCount == _this.incPrintedCount)&&(identical(other.updatedReason, _this.updatedReason) || other.updatedReason == _this.updatedReason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as ConfigPatchPickingOrderProductReq;
+  return Object.hash(runtimeType,_this.pickingStatus,_this.loadingStatus,_this.pickedQuantity,_this.incPrintedCount,_this.updatedReason);
+}
+
+@override
+String toString() {
+  final _this = this as ConfigPatchPickingOrderProductReq;
+  return 'ConfigPatchPickingOrderProductReq(pickingStatus: ${_this.pickingStatus}, loadingStatus: ${_this.loadingStatus}, pickedQuantity: ${_this.pickedQuantity}, incPrintedCount: ${_this.incPrintedCount}, updatedReason: ${_this.updatedReason})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ConfigPatchPickingOrderProductReqCopyWith<$Res>  {
+  factory $ConfigPatchPickingOrderProductReqCopyWith(ConfigPatchPickingOrderProductReq value, $Res Function(ConfigPatchPickingOrderProductReq) _then) = _$ConfigPatchPickingOrderProductReqCopyWithImpl;
+@useResult
+$Res call({
+ EnumPickingStatus? pickingStatus, EnumLoadingStatus? loadingStatus,@DecimalConverter() Decimal? pickedQuantity, bool? incPrintedCount, String updatedReason
+});
+
+
+
+
+}
+/// @nodoc
+class _$ConfigPatchPickingOrderProductReqCopyWithImpl<$Res>
+    implements $ConfigPatchPickingOrderProductReqCopyWith<$Res> {
+  _$ConfigPatchPickingOrderProductReqCopyWithImpl(this._self, this._then);
+
+  final ConfigPatchPickingOrderProductReq _self;
+  final $Res Function(ConfigPatchPickingOrderProductReq) _then;
+
+/// Create a copy of ConfigPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? pickingStatus = freezed,Object? loadingStatus = freezed,Object? pickedQuantity = freezed,Object? incPrintedCount = freezed,Object? updatedReason = null,}) {
+  return _then(ConfigPatchPickingOrderProductReq(
+pickingStatus: freezed == pickingStatus ? _self.pickingStatus : pickingStatus // ignore: cast_nullable_to_non_nullable
+as EnumPickingStatus?,loadingStatus: freezed == loadingStatus ? _self.loadingStatus : loadingStatus // ignore: cast_nullable_to_non_nullable
+as EnumLoadingStatus?,pickedQuantity: freezed == pickedQuantity ? _self.pickedQuantity : pickedQuantity // ignore: cast_nullable_to_non_nullable
+as Decimal?,incPrintedCount: freezed == incPrintedCount ? _self.incPrintedCount : incPrintedCount // ignore: cast_nullable_to_non_nullable
+as bool?,updatedReason: null == updatedReason ? _self.updatedReason : updatedReason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ConfigPatchPickingOrderProductReq].
+extension ConfigPatchPickingOrderProductReqPatterns on ConfigPatchPickingOrderProductReq {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ConfigPatchPickingOrderProductReq value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ConfigPatchPickingOrderProductReq value)  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ConfigPatchPickingOrderProductReq value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq() when $default != null:
+return $default(_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)  $default,) {final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq():
+return $default(_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)?  $default,) {final _that = this;
+switch (_that) {
+case _ConfigPatchPickingOrderProductReq() when $default != null:
+return $default(_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ConfigPatchPickingOrderProductReq implements ConfigPatchPickingOrderProductReq {
+  const _ConfigPatchPickingOrderProductReq({this.pickingStatus, this.loadingStatus, @DecimalConverter() this.pickedQuantity, this.incPrintedCount, required this.updatedReason});
+  factory _ConfigPatchPickingOrderProductReq.fromJson(Map<String, dynamic> json) => _$ConfigPatchPickingOrderProductReqFromJson(json);
+
+@override final  EnumPickingStatus? pickingStatus;
+@override final  EnumLoadingStatus? loadingStatus;
+@override@DecimalConverter() final  Decimal? pickedQuantity;
+@override final  bool? incPrintedCount;
+@override final  String updatedReason;
+
+/// Create a copy of ConfigPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ConfigPatchPickingOrderProductReqCopyWith<_ConfigPatchPickingOrderProductReq> get copyWith => __$ConfigPatchPickingOrderProductReqCopyWithImpl<_ConfigPatchPickingOrderProductReq>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ConfigPatchPickingOrderProductReqToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigPatchPickingOrderProductReq&&(identical(other.pickingStatus, pickingStatus) || other.pickingStatus == pickingStatus)&&(identical(other.loadingStatus, loadingStatus) || other.loadingStatus == loadingStatus)&&(identical(other.pickedQuantity, pickedQuantity) || other.pickedQuantity == pickedQuantity)&&(identical(other.incPrintedCount, incPrintedCount) || other.incPrintedCount == incPrintedCount)&&(identical(other.updatedReason, updatedReason) || other.updatedReason == updatedReason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,pickingStatus,loadingStatus,pickedQuantity,incPrintedCount,updatedReason);
+}
+
+@override
+String toString() {
+    return 'ConfigPatchPickingOrderProductReq(pickingStatus: $pickingStatus, loadingStatus: $loadingStatus, pickedQuantity: $pickedQuantity, incPrintedCount: $incPrintedCount, updatedReason: $updatedReason)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ConfigPatchPickingOrderProductReqCopyWith<$Res> implements $ConfigPatchPickingOrderProductReqCopyWith<$Res> {
+  factory _$ConfigPatchPickingOrderProductReqCopyWith(_ConfigPatchPickingOrderProductReq value, $Res Function(_ConfigPatchPickingOrderProductReq) _then) = __$ConfigPatchPickingOrderProductReqCopyWithImpl;
+@override @useResult
+$Res call({
+ EnumPickingStatus? pickingStatus, EnumLoadingStatus? loadingStatus,@DecimalConverter() Decimal? pickedQuantity, bool? incPrintedCount, String updatedReason
+});
+
+
+
+
+}
+/// @nodoc
+class __$ConfigPatchPickingOrderProductReqCopyWithImpl<$Res>
+    implements _$ConfigPatchPickingOrderProductReqCopyWith<$Res> {
+  __$ConfigPatchPickingOrderProductReqCopyWithImpl(this._self, this._then);
+
+  final _ConfigPatchPickingOrderProductReq _self;
+  final $Res Function(_ConfigPatchPickingOrderProductReq) _then;
+
+/// Create a copy of ConfigPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? pickingStatus = freezed,Object? loadingStatus = freezed,Object? pickedQuantity = freezed,Object? incPrintedCount = freezed,Object? updatedReason = null,}) {
+  return _then(_ConfigPatchPickingOrderProductReq(
+pickingStatus: freezed == pickingStatus ? _self.pickingStatus : pickingStatus // ignore: cast_nullable_to_non_nullable
+as EnumPickingStatus?,loadingStatus: freezed == loadingStatus ? _self.loadingStatus : loadingStatus // ignore: cast_nullable_to_non_nullable
+as EnumLoadingStatus?,pickedQuantity: freezed == pickedQuantity ? _self.pickedQuantity : pickedQuantity // ignore: cast_nullable_to_non_nullable
+as Decimal?,incPrintedCount: freezed == incPrintedCount ? _self.incPrintedCount : incPrintedCount // ignore: cast_nullable_to_non_nullable
+as bool?,updatedReason: null == updatedReason ? _self.updatedReason : updatedReason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ConfigBatchPatchPickingOrderProductItemReq {
+
+@UUIDConverter() UUID get id; EnumPickingStatus? get pickingStatus; EnumLoadingStatus? get loadingStatus;@DecimalConverter() Decimal? get pickedQuantity; bool? get incPrintedCount; String get updatedReason;
+/// Create a copy of ConfigBatchPatchPickingOrderProductItemReq
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ConfigBatchPatchPickingOrderProductItemReqCopyWith<ConfigBatchPatchPickingOrderProductItemReq> get copyWith => _$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl<ConfigBatchPatchPickingOrderProductItemReq>(this as ConfigBatchPatchPickingOrderProductItemReq, _$identity);
+
+  /// Serializes this ConfigBatchPatchPickingOrderProductItemReq to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as ConfigBatchPatchPickingOrderProductItemReq;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigBatchPatchPickingOrderProductItemReq&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.pickingStatus, _this.pickingStatus) || other.pickingStatus == _this.pickingStatus)&&(identical(other.loadingStatus, _this.loadingStatus) || other.loadingStatus == _this.loadingStatus)&&(identical(other.pickedQuantity, _this.pickedQuantity) || other.pickedQuantity == _this.pickedQuantity)&&(identical(other.incPrintedCount, _this.incPrintedCount) || other.incPrintedCount == _this.incPrintedCount)&&(identical(other.updatedReason, _this.updatedReason) || other.updatedReason == _this.updatedReason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as ConfigBatchPatchPickingOrderProductItemReq;
+  return Object.hash(runtimeType,_this.id,_this.pickingStatus,_this.loadingStatus,_this.pickedQuantity,_this.incPrintedCount,_this.updatedReason);
+}
+
+@override
+String toString() {
+  final _this = this as ConfigBatchPatchPickingOrderProductItemReq;
+  return 'ConfigBatchPatchPickingOrderProductItemReq(id: ${_this.id}, pickingStatus: ${_this.pickingStatus}, loadingStatus: ${_this.loadingStatus}, pickedQuantity: ${_this.pickedQuantity}, incPrintedCount: ${_this.incPrintedCount}, updatedReason: ${_this.updatedReason})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ConfigBatchPatchPickingOrderProductItemReqCopyWith<$Res>  {
+  factory $ConfigBatchPatchPickingOrderProductItemReqCopyWith(ConfigBatchPatchPickingOrderProductItemReq value, $Res Function(ConfigBatchPatchPickingOrderProductItemReq) _then) = _$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl;
+@useResult
+$Res call({
+@UUIDConverter() UUID id, EnumPickingStatus? pickingStatus, EnumLoadingStatus? loadingStatus,@DecimalConverter() Decimal? pickedQuantity, bool? incPrintedCount, String updatedReason
+});
+
+
+
+
+}
+/// @nodoc
+class _$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl<$Res>
+    implements $ConfigBatchPatchPickingOrderProductItemReqCopyWith<$Res> {
+  _$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl(this._self, this._then);
+
+  final ConfigBatchPatchPickingOrderProductItemReq _self;
+  final $Res Function(ConfigBatchPatchPickingOrderProductItemReq) _then;
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductItemReq
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? pickingStatus = freezed,Object? loadingStatus = freezed,Object? pickedQuantity = freezed,Object? incPrintedCount = freezed,Object? updatedReason = null,}) {
+  return _then(ConfigBatchPatchPickingOrderProductItemReq(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as UUID,pickingStatus: freezed == pickingStatus ? _self.pickingStatus : pickingStatus // ignore: cast_nullable_to_non_nullable
+as EnumPickingStatus?,loadingStatus: freezed == loadingStatus ? _self.loadingStatus : loadingStatus // ignore: cast_nullable_to_non_nullable
+as EnumLoadingStatus?,pickedQuantity: freezed == pickedQuantity ? _self.pickedQuantity : pickedQuantity // ignore: cast_nullable_to_non_nullable
+as Decimal?,incPrintedCount: freezed == incPrintedCount ? _self.incPrintedCount : incPrintedCount // ignore: cast_nullable_to_non_nullable
+as bool?,updatedReason: null == updatedReason ? _self.updatedReason : updatedReason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ConfigBatchPatchPickingOrderProductItemReq].
+extension ConfigBatchPatchPickingOrderProductItemReqPatterns on ConfigBatchPatchPickingOrderProductItemReq {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ConfigBatchPatchPickingOrderProductItemReq value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ConfigBatchPatchPickingOrderProductItemReq value)  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ConfigBatchPatchPickingOrderProductItemReq value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq() when $default != null:
+return $default(_that.id,_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@UUIDConverter()  UUID id,  EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)  $default,) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq():
+return $default(_that.id,_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@UUIDConverter()  UUID id,  EnumPickingStatus? pickingStatus,  EnumLoadingStatus? loadingStatus, @DecimalConverter()  Decimal? pickedQuantity,  bool? incPrintedCount,  String updatedReason)?  $default,) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductItemReq() when $default != null:
+return $default(_that.id,_that.pickingStatus,_that.loadingStatus,_that.pickedQuantity,_that.incPrintedCount,_that.updatedReason);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ConfigBatchPatchPickingOrderProductItemReq implements ConfigBatchPatchPickingOrderProductItemReq {
+  const _ConfigBatchPatchPickingOrderProductItemReq({@UUIDConverter() required this.id, this.pickingStatus, this.loadingStatus, @DecimalConverter() this.pickedQuantity, this.incPrintedCount, required this.updatedReason});
+  factory _ConfigBatchPatchPickingOrderProductItemReq.fromJson(Map<String, dynamic> json) => _$ConfigBatchPatchPickingOrderProductItemReqFromJson(json);
+
+@override@UUIDConverter() final  UUID id;
+@override final  EnumPickingStatus? pickingStatus;
+@override final  EnumLoadingStatus? loadingStatus;
+@override@DecimalConverter() final  Decimal? pickedQuantity;
+@override final  bool? incPrintedCount;
+@override final  String updatedReason;
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductItemReq
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ConfigBatchPatchPickingOrderProductItemReqCopyWith<_ConfigBatchPatchPickingOrderProductItemReq> get copyWith => __$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl<_ConfigBatchPatchPickingOrderProductItemReq>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ConfigBatchPatchPickingOrderProductItemReqToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigBatchPatchPickingOrderProductItemReq&&(identical(other.id, id) || other.id == id)&&(identical(other.pickingStatus, pickingStatus) || other.pickingStatus == pickingStatus)&&(identical(other.loadingStatus, loadingStatus) || other.loadingStatus == loadingStatus)&&(identical(other.pickedQuantity, pickedQuantity) || other.pickedQuantity == pickedQuantity)&&(identical(other.incPrintedCount, incPrintedCount) || other.incPrintedCount == incPrintedCount)&&(identical(other.updatedReason, updatedReason) || other.updatedReason == updatedReason));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id,pickingStatus,loadingStatus,pickedQuantity,incPrintedCount,updatedReason);
+}
+
+@override
+String toString() {
+    return 'ConfigBatchPatchPickingOrderProductItemReq(id: $id, pickingStatus: $pickingStatus, loadingStatus: $loadingStatus, pickedQuantity: $pickedQuantity, incPrintedCount: $incPrintedCount, updatedReason: $updatedReason)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ConfigBatchPatchPickingOrderProductItemReqCopyWith<$Res> implements $ConfigBatchPatchPickingOrderProductItemReqCopyWith<$Res> {
+  factory _$ConfigBatchPatchPickingOrderProductItemReqCopyWith(_ConfigBatchPatchPickingOrderProductItemReq value, $Res Function(_ConfigBatchPatchPickingOrderProductItemReq) _then) = __$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl;
+@override @useResult
+$Res call({
+@UUIDConverter() UUID id, EnumPickingStatus? pickingStatus, EnumLoadingStatus? loadingStatus,@DecimalConverter() Decimal? pickedQuantity, bool? incPrintedCount, String updatedReason
+});
+
+
+
+
+}
+/// @nodoc
+class __$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl<$Res>
+    implements _$ConfigBatchPatchPickingOrderProductItemReqCopyWith<$Res> {
+  __$ConfigBatchPatchPickingOrderProductItemReqCopyWithImpl(this._self, this._then);
+
+  final _ConfigBatchPatchPickingOrderProductItemReq _self;
+  final $Res Function(_ConfigBatchPatchPickingOrderProductItemReq) _then;
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductItemReq
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? pickingStatus = freezed,Object? loadingStatus = freezed,Object? pickedQuantity = freezed,Object? incPrintedCount = freezed,Object? updatedReason = null,}) {
+  return _then(_ConfigBatchPatchPickingOrderProductItemReq(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as UUID,pickingStatus: freezed == pickingStatus ? _self.pickingStatus : pickingStatus // ignore: cast_nullable_to_non_nullable
+as EnumPickingStatus?,loadingStatus: freezed == loadingStatus ? _self.loadingStatus : loadingStatus // ignore: cast_nullable_to_non_nullable
+as EnumLoadingStatus?,pickedQuantity: freezed == pickedQuantity ? _self.pickedQuantity : pickedQuantity // ignore: cast_nullable_to_non_nullable
+as Decimal?,incPrintedCount: freezed == incPrintedCount ? _self.incPrintedCount : incPrintedCount // ignore: cast_nullable_to_non_nullable
+as bool?,updatedReason: null == updatedReason ? _self.updatedReason : updatedReason // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
+mixin _$ConfigBatchPatchPickingOrderProductReq {
+
+ List<ConfigBatchPatchPickingOrderProductItemReq> get items;
+/// Create a copy of ConfigBatchPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ConfigBatchPatchPickingOrderProductReqCopyWith<ConfigBatchPatchPickingOrderProductReq> get copyWith => _$ConfigBatchPatchPickingOrderProductReqCopyWithImpl<ConfigBatchPatchPickingOrderProductReq>(this as ConfigBatchPatchPickingOrderProductReq, _$identity);
+
+  /// Serializes this ConfigBatchPatchPickingOrderProductReq to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as ConfigBatchPatchPickingOrderProductReq;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ConfigBatchPatchPickingOrderProductReq&&const DeepCollectionEquality().equals(other.items, _this.items));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as ConfigBatchPatchPickingOrderProductReq;
+  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.items));
+}
+
+@override
+String toString() {
+  final _this = this as ConfigBatchPatchPickingOrderProductReq;
+  return 'ConfigBatchPatchPickingOrderProductReq(items: ${_this.items})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ConfigBatchPatchPickingOrderProductReqCopyWith<$Res>  {
+  factory $ConfigBatchPatchPickingOrderProductReqCopyWith(ConfigBatchPatchPickingOrderProductReq value, $Res Function(ConfigBatchPatchPickingOrderProductReq) _then) = _$ConfigBatchPatchPickingOrderProductReqCopyWithImpl;
+@useResult
+$Res call({
+ List<ConfigBatchPatchPickingOrderProductItemReq> items
+});
+
+
+
+
+}
+/// @nodoc
+class _$ConfigBatchPatchPickingOrderProductReqCopyWithImpl<$Res>
+    implements $ConfigBatchPatchPickingOrderProductReqCopyWith<$Res> {
+  _$ConfigBatchPatchPickingOrderProductReqCopyWithImpl(this._self, this._then);
+
+  final ConfigBatchPatchPickingOrderProductReq _self;
+  final $Res Function(ConfigBatchPatchPickingOrderProductReq) _then;
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? items = null,}) {
+  return _then(ConfigBatchPatchPickingOrderProductReq(
+items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<ConfigBatchPatchPickingOrderProductItemReq>,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ConfigBatchPatchPickingOrderProductReq].
+extension ConfigBatchPatchPickingOrderProductReqPatterns on ConfigBatchPatchPickingOrderProductReq {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ConfigBatchPatchPickingOrderProductReq value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ConfigBatchPatchPickingOrderProductReq value)  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ConfigBatchPatchPickingOrderProductReq value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<ConfigBatchPatchPickingOrderProductItemReq> items)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq() when $default != null:
+return $default(_that.items);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<ConfigBatchPatchPickingOrderProductItemReq> items)  $default,) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq():
+return $default(_that.items);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<ConfigBatchPatchPickingOrderProductItemReq> items)?  $default,) {final _that = this;
+switch (_that) {
+case _ConfigBatchPatchPickingOrderProductReq() when $default != null:
+return $default(_that.items);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ConfigBatchPatchPickingOrderProductReq implements ConfigBatchPatchPickingOrderProductReq {
+  const _ConfigBatchPatchPickingOrderProductReq({required  List<ConfigBatchPatchPickingOrderProductItemReq> items}): _items = items;
+  factory _ConfigBatchPatchPickingOrderProductReq.fromJson(Map<String, dynamic> json) => _$ConfigBatchPatchPickingOrderProductReqFromJson(json);
+
+ final  List<ConfigBatchPatchPickingOrderProductItemReq> _items;
+@override List<ConfigBatchPatchPickingOrderProductItemReq> get items {
+  if (_items is EqualUnmodifiableListView) return _items;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_items);
+}
+
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ConfigBatchPatchPickingOrderProductReqCopyWith<_ConfigBatchPatchPickingOrderProductReq> get copyWith => __$ConfigBatchPatchPickingOrderProductReqCopyWithImpl<_ConfigBatchPatchPickingOrderProductReq>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ConfigBatchPatchPickingOrderProductReqToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ConfigBatchPatchPickingOrderProductReq&&const DeepCollectionEquality().equals(other.items, _items));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,const DeepCollectionEquality().hash(_items));
+}
+
+@override
+String toString() {
+    return 'ConfigBatchPatchPickingOrderProductReq(items: $items)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ConfigBatchPatchPickingOrderProductReqCopyWith<$Res> implements $ConfigBatchPatchPickingOrderProductReqCopyWith<$Res> {
+  factory _$ConfigBatchPatchPickingOrderProductReqCopyWith(_ConfigBatchPatchPickingOrderProductReq value, $Res Function(_ConfigBatchPatchPickingOrderProductReq) _then) = __$ConfigBatchPatchPickingOrderProductReqCopyWithImpl;
+@override @useResult
+$Res call({
+ List<ConfigBatchPatchPickingOrderProductItemReq> items
+});
+
+
+
+
+}
+/// @nodoc
+class __$ConfigBatchPatchPickingOrderProductReqCopyWithImpl<$Res>
+    implements _$ConfigBatchPatchPickingOrderProductReqCopyWith<$Res> {
+  __$ConfigBatchPatchPickingOrderProductReqCopyWithImpl(this._self, this._then);
+
+  final _ConfigBatchPatchPickingOrderProductReq _self;
+  final $Res Function(_ConfigBatchPatchPickingOrderProductReq) _then;
+
+/// Create a copy of ConfigBatchPatchPickingOrderProductReq
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? items = null,}) {
+  return _then(_ConfigBatchPatchPickingOrderProductReq(
+items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<ConfigBatchPatchPickingOrderProductItemReq>,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$ConfigListPickingOrderProductFilterReq {
 
 @UUIDListConverter() List<UUID>? get productSkuIds;

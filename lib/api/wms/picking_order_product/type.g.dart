@@ -6,6 +6,110 @@ part of 'type.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_ConfigPatchPickingOrderProductReq _$ConfigPatchPickingOrderProductReqFromJson(
+  Map<String, dynamic> json,
+) => _ConfigPatchPickingOrderProductReq(
+  pickingStatus: $enumDecodeNullable(
+    _$EnumPickingStatusEnumMap,
+    json['pickingStatus'],
+  ),
+  loadingStatus: $enumDecodeNullable(
+    _$EnumLoadingStatusEnumMap,
+    json['loadingStatus'],
+  ),
+  pickedQuantity: _$JsonConverterFromJson<String, Decimal>(
+    json['pickedQuantity'],
+    const DecimalConverter().fromJson,
+  ),
+  incPrintedCount: json['incPrintedCount'] as bool?,
+  updatedReason: json['updatedReason'] as String,
+);
+
+Map<String, dynamic> _$ConfigPatchPickingOrderProductReqToJson(
+  _ConfigPatchPickingOrderProductReq instance,
+) => <String, dynamic>{
+  'pickingStatus': _$EnumPickingStatusEnumMap[instance.pickingStatus],
+  'loadingStatus': _$EnumLoadingStatusEnumMap[instance.loadingStatus],
+  'pickedQuantity': _$JsonConverterToJson<String, Decimal>(
+    instance.pickedQuantity,
+    const DecimalConverter().toJson,
+  ),
+  'incPrintedCount': instance.incPrintedCount,
+  'updatedReason': instance.updatedReason,
+};
+
+const _$EnumPickingStatusEnumMap = {
+  EnumPickingStatus.pending: 'PENDING',
+  EnumPickingStatus.partialPicked: 'PARTIAL_PICKED',
+  EnumPickingStatus.picked: 'PICKED',
+};
+
+const _$EnumLoadingStatusEnumMap = {
+  EnumLoadingStatus.pending: 'PENDING',
+  EnumLoadingStatus.loaded: 'LOADED',
+};
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) => json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) => value == null ? null : toJson(value);
+
+_ConfigBatchPatchPickingOrderProductItemReq
+_$ConfigBatchPatchPickingOrderProductItemReqFromJson(
+  Map<String, dynamic> json,
+) => _ConfigBatchPatchPickingOrderProductItemReq(
+  id: const UUIDConverter().fromJson(json['id'] as String),
+  pickingStatus: $enumDecodeNullable(
+    _$EnumPickingStatusEnumMap,
+    json['pickingStatus'],
+  ),
+  loadingStatus: $enumDecodeNullable(
+    _$EnumLoadingStatusEnumMap,
+    json['loadingStatus'],
+  ),
+  pickedQuantity: _$JsonConverterFromJson<String, Decimal>(
+    json['pickedQuantity'],
+    const DecimalConverter().fromJson,
+  ),
+  incPrintedCount: json['incPrintedCount'] as bool?,
+  updatedReason: json['updatedReason'] as String,
+);
+
+Map<String, dynamic> _$ConfigBatchPatchPickingOrderProductItemReqToJson(
+  _ConfigBatchPatchPickingOrderProductItemReq instance,
+) => <String, dynamic>{
+  'id': const UUIDConverter().toJson(instance.id),
+  'pickingStatus': _$EnumPickingStatusEnumMap[instance.pickingStatus],
+  'loadingStatus': _$EnumLoadingStatusEnumMap[instance.loadingStatus],
+  'pickedQuantity': _$JsonConverterToJson<String, Decimal>(
+    instance.pickedQuantity,
+    const DecimalConverter().toJson,
+  ),
+  'incPrintedCount': instance.incPrintedCount,
+  'updatedReason': instance.updatedReason,
+};
+
+_ConfigBatchPatchPickingOrderProductReq
+_$ConfigBatchPatchPickingOrderProductReqFromJson(Map<String, dynamic> json) =>
+    _ConfigBatchPatchPickingOrderProductReq(
+      items: (json['items'] as List<dynamic>)
+          .map(
+            (e) => ConfigBatchPatchPickingOrderProductItemReq.fromJson(
+              e as Map<String, dynamic>,
+            ),
+          )
+          .toList(),
+    );
+
+Map<String, dynamic> _$ConfigBatchPatchPickingOrderProductReqToJson(
+  _ConfigBatchPatchPickingOrderProductReq instance,
+) => <String, dynamic>{'items': instance.items};
+
 _ConfigListPickingOrderProductFilterReq
 _$ConfigListPickingOrderProductFilterReqFromJson(Map<String, dynamic> json) =>
     _ConfigListPickingOrderProductFilterReq(
@@ -20,11 +124,6 @@ Map<String, dynamic> _$ConfigListPickingOrderProductFilterReqToJson(
     const UUIDListConverter().toJson,
   ),
 };
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) => value == null ? null : toJson(value);
 
 _ConfigListPickingOrderProductReq _$ConfigListPickingOrderProductReqFromJson(
   Map<String, dynamic> json,
@@ -155,19 +254,3 @@ const _$EnumEntityStatusEnumMap = {
   EnumEntityStatus.active: 'ACTIVE',
   EnumEntityStatus.deleted: 'DELETED',
 };
-
-const _$EnumPickingStatusEnumMap = {
-  EnumPickingStatus.pending: 'PENDING',
-  EnumPickingStatus.partialPicked: 'PARTIAL_PICKED',
-  EnumPickingStatus.picked: 'PICKED',
-};
-
-const _$EnumLoadingStatusEnumMap = {
-  EnumLoadingStatus.pending: 'PENDING',
-  EnumLoadingStatus.loaded: 'LOADED',
-};
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) => json == null ? null : fromJson(json as Json);
